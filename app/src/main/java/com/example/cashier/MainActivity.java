@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button scanButton = (Button)findViewById(R.id.scanBtnId);
+        Button scanButton = (Button)findViewById(R.id.btnScan);
         scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 scanCode();
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button payButton = (Button)findViewById(R.id.payBtnId);
+        Button payButton = (Button)findViewById(R.id.btnPay);
         payButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 setContentView(R.layout.activity_main);

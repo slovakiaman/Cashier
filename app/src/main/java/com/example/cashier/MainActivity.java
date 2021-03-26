@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.Scanner;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -31,20 +33,13 @@ public class MainActivity extends AppCompatActivity {
         scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 scanCode();
-                // Intent to activity
-                //Intent intent = new Intent(MainActivity.this, Scanner.class);
-                //startActivity(intent);
             }
         });
 
         Button payButton = (Button)findViewById(R.id.btnPay);
         payButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
-                TextView textView = new TextView(MainActivity.this);
-                textView.setText("hovno");
-                LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayout);
-                linearLayout.addView(textView);
+                // TODO intent to Payment methods activity
             }
         });
     }
@@ -59,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
      @Override
-    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
+     protected void onActivityResult(int requestCode, int resultCode, Intent data){
          IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
          if (result != null){
              if (result.getContents() != null){
@@ -78,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
                  }).setNegativeButton("finish", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialog, int which) {
-                         finish();
+                         //Intent intent = new Intent(MainActivity.this, Scanner.class);
+                         //startActivity(intent);
+                         //finish();
+                         dialog.cancel();
                      }
                  });
                  AlertDialog dialog = builder.create();

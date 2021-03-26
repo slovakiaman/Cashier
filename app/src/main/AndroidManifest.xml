@@ -25,7 +25,7 @@
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden">
-
+            android:screenOrientation="portrait"
         </activity>
     </application>
 

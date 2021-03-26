@@ -5,6 +5,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class StateManager {
+    /*
+        Reference to state singleton object
+     */
     public static State stateRef = null;
 
     public static void InitState(){
@@ -38,7 +41,6 @@ public class StateManager {
                 // TODO add to each barcode ID because you may scan same barcode
             }
         }
-
         return null;
     }
 
@@ -51,8 +53,6 @@ public class StateManager {
                 _scannedCodes.add(i + " test");
             }
         }
-
-
     }
 }
 

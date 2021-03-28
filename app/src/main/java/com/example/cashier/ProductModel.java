@@ -2,19 +2,19 @@ package com.example.cashier;
 
 public class ProductModel {
 
-    public ProductModel(String name, String code, int ammount, double price, CodeType type){
+    public ProductModel(String name, String code, int ammount, double price){
         this._name = name;
         this._code = code;
         this._ammount = ammount;
         this._price = price;
-        this._codeType = type;
+
     }
 
     private String _name;
     private String _code;
     private int _ammount;
     private double _price;
-    private CodeType _codeType;
+
 
     public String GetName(){
         return this._name;
@@ -48,16 +48,11 @@ public class ProductModel {
         this._price = price;
     }
 
-    public CodeType GetCodeType(){
-        return this._codeType;
+    public String toString(){
+        return GetName() +"  - "+ GetPrice() + " EUR";
     }
 
-    public void SetCodeType(CodeType val){
-        this._codeType = val;
-    }
+
 }
 
-enum CodeType {
-    QR,
-    EAN,
-}
+

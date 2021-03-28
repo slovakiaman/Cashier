@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
         Button scanButton = (Button)findViewById(R.id.btnScan);
         scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -61,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
                  AlertDialog.Builder builder = new AlertDialog.Builder(this);
                  String content = result.getContents();
                  // add to store
+                 DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+                 ProductModel product = databaseHelper.getProductByCode(content);
+                 String info = product == null ? "No Info" : product.toString();
+                 //need add product to basket array
                  StateManager.AddScannedCode(content);
 
-                 builder.setMessage(content);
+                 builder.setMessage(content + " \n" +info);
                  builder.setTitle("Scanning result");
                  builder.setPositiveButton("Scan again", new DialogInterface.OnClickListener() {
                      @Override

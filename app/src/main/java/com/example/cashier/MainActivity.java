@@ -2,21 +2,17 @@ package com.example.cashier;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashier.state_manager.StateManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
              if (result.getContents() != null){
                  AlertDialog.Builder builder = new AlertDialog.Builder(this);
                  String content = result.getContents();
-                 // add to store
-                 StateManager.AddScannedCode(content);
 
                  builder.setMessage(content);
                  builder.setTitle("Scanning result");

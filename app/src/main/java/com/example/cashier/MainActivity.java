@@ -2,21 +2,16 @@ package com.example.cashier;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +58,27 @@ public class MainActivity extends AppCompatActivity {
                  // add to store
                  DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
                  ProductModel product = databaseHelper.getProductByCode(content);
-                 String info = product == null ? "No Info" : product.toString();
+
+                 String info = "";
+                 if(product == null){
+                     info  = "Unknown item! ";
+                     builder.setNeutralButton("Insert", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int which) {
+                             //register item
+                             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                             Bundle b = new Bundle();
+                             b.putString("key", content); //send code(content) to register activity
+                             intent.putExtras(b);
+                             startActivity(intent);
+
+                         }
+                     });
+                 }
+                 else{
+                     info = product.toString();
+                 }
+
                  //need add product to basket array
                  StateManager.AddScannedCode(content);
 

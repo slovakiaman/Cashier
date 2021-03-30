@@ -27,6 +27,9 @@
             android:windowSoftInputMode="stateAlwaysHidden">
             android:screenOrientation="portrait"
         </activity>
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Theme.Cashier.CustomTheme"
+            ></activity>
     </application>
 
 </manifest>

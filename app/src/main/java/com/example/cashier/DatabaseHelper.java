@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ProductModel getProductByCode(String code){
         ProductModel product = null;
-        String query = "SELECT * FROM " + PRODUCT_TABLE + " WHERE " + PRODUCT_CODE + " LIKE " + code;
+        String query = "SELECT * FROM " + PRODUCT_TABLE + " WHERE " + PRODUCT_CODE + " == "  + '"' + code + '"';
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query,null);
 

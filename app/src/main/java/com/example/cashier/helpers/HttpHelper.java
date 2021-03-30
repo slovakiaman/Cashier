@@ -34,7 +34,7 @@ public class HttpHelper {
 
             // products
             JSONObject product = new JSONObject();
-            product.put("id", 0);
+            //product.put("id", 0);
             product.put("name", "Mars tycinka");
             product.put("code", "3454sda3");
             product.put("numberOfProducts", 1);

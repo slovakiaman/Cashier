@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         payButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 // TODO intent to Payment methods activity
-                startActivity(new Intent(MainActivity.this, BillActivity.class));//docasny odkaz na test bill
+                startActivity(new Intent(MainActivity.this, BillActivity.class));//docasny odkaz na test bill - potom presmerovat na pay
 
             }
         });

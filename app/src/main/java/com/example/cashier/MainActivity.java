@@ -1,20 +1,29 @@
 package com.example.cashier;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cashier.recyclerView.FakeDb;
+import com.example.cashier.recyclerView.RViewAdapter;
 import com.example.cashier.state_manager.StateManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter rvAdapter;
+    private RecyclerView.LayoutManager rvManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
                 // TODO intent to Payment methods activity
             }
         });
+        FakeDb db = new FakeDb();
+
+        recyclerView = (RecyclerView)findViewById(R.id.RView);
+        recyclerView.setHasFixedSize(true);
+
+        rvManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(rvManager);
+
+        rvAdapter = new RViewAdapter(db.getItems());
+        recyclerView.setAdapter(rvAdapter);
+
+        TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
+        totalPriceText.setText("Total: 24.59€");
     }
 
     private void scanCode(){

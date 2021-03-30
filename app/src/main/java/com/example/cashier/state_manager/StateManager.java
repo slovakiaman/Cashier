@@ -1,7 +1,5 @@
 package com.example.cashier.state_manager;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class StateManager {

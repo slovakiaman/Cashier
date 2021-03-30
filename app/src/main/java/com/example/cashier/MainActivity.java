@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         rvAdapter = new RViewAdapter(db.getItems());
         recyclerView.setAdapter(rvAdapter);
+
+        TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
+        totalPriceText.setText("Total: 24.59€");
     }
 
     private void scanCode(){

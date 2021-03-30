@@ -10,14 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cashier.R;
+import com.example.cashier.state_manager.ProductModel;
 
 import java.util.ArrayList;
 
 public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder> {
 
-    private ArrayList<Item> dataset;
+    private ArrayList<ProductModel> dataset;
 
-    public RViewAdapter(ArrayList<Item> nDataset) {
+    public RViewAdapter(ArrayList<ProductModel> nDataset) {
         dataset = nDataset;
     }
 
@@ -60,10 +61,10 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RViewAdapter.RViewHolder holder, int position) {
-        Item item = dataset.get(position);
-        holder.textProductName.setText(item.getProductName());
-        holder.textProductCode.setText(item.getProductCode());
-        holder.textProductPrice.setText(String.format("%.2f€", item.getUnitPrice()));
+        ProductModel product = dataset.get(position);
+        holder.textProductName.setText(product.getName());
+        holder.textProductCode.setText(product.getCode());
+        holder.textProductPrice.setText(String.format("%.2f€", product.getUnitPrice()));
 
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override

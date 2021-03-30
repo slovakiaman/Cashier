@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cashier.recyclerView.FakeDb;
 import com.example.cashier.recyclerView.RViewAdapter;
 import com.example.cashier.state_manager.StateManager;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 // TODO intent to Payment methods activity
             }
         });
-        FakeDb db = new FakeDb();
 
         recyclerView = (RecyclerView)findViewById(R.id.RView);
         recyclerView.setHasFixedSize(true);
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         rvManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(rvManager);
 
-        rvAdapter = new RViewAdapter(db.getItems());
+        rvAdapter = new RViewAdapter(StateManager.getProductsInBasket());
         recyclerView.setAdapter(rvAdapter);
 
         TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);

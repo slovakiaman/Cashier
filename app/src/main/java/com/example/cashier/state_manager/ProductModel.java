@@ -48,4 +48,8 @@ public class ProductModel {
     public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    public String toString(){
+        return getName() +" :   "+ getUnitPrice() + " EUR";
+    }
 }

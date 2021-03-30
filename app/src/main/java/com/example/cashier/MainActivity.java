@@ -1,5 +1,8 @@
 package com.example.cashier;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cashier.helpers.DatabaseHelper;
 import com.example.cashier.recyclerView.RViewAdapter;
+import com.example.cashier.state_manager.ProductModel;
 import com.example.cashier.state_manager.StateManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
         Button scanButton = (Button)findViewById(R.id.btnScan);
         scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -78,8 +81,32 @@ public class MainActivity extends AppCompatActivity {
              if (result.getContents() != null){
                  AlertDialog.Builder builder = new AlertDialog.Builder(this);
                  String content = result.getContents();
+                 // add to store
+                 DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+                 ProductModel product = databaseHelper.getProductByCode(content);
 
-                 builder.setMessage(content);
+                 String info = "";
+                 if(product == null){
+                     info  = "Unknown item! ";
+                     builder.setNeutralButton("Insert", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int which) {
+                             //register item
+                             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                             Bundle b = new Bundle();
+                             b.putString("key", content); //send code(content) to register activity
+                             intent.putExtras(b);
+                             startActivity(intent);
+                         }
+                     });
+                 }
+                 else{
+                     info = product.toString();
+                     //need add product to basket array                 StateManager.getProductsInBasket().add(product);
+                 }
+
+
+                 builder.setMessage(content + " \n" +info);
                  builder.setTitle("Scanning result");
                  builder.setPositiveButton("Scan again", new DialogInterface.OnClickListener() {
                      @Override

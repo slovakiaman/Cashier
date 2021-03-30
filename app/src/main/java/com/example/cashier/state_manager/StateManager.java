@@ -1,6 +1,6 @@
 package com.example.cashier.state_manager;
 
-import android.util.Log;
+import com.example.cashier.helpers.HttpHelper;
 
 import java.util.ArrayList;
 

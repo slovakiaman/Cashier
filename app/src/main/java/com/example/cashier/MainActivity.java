@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO intent to Payment methods activity
                 startActivity(new Intent(MainActivity.this, BillActivity.class));//docasny odkaz na test bill - potom presmerovat na pay
-
             }
         });
-
         TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
         totalPriceText.setText("0.00€");
 
@@ -60,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
         rvManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(rvManager);
 
-        rvAdapter = new RViewAdapter(StateManager.getProductsInBasket(), totalPriceText);
+        rvAdapter = new RViewAdapter(totalPriceText);
         recyclerView.setAdapter(rvAdapter);
 
+    }
 
+    private void addProduct(ProductModel productModel) {
+        ((RViewAdapter)rvAdapter).addItem(productModel);
     }
 
     private void scanCode(){
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                  }
                  else{
                      info = product.toString();
-                     //need add product to basket array                 StateManager.getProductsInBasket().add(product);
+                     addProduct(product);
                  }
 
 

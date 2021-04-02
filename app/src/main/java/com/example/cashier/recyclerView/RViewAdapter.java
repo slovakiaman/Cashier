@@ -11,43 +11,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cashier.R;
 import com.example.cashier.state_manager.ProductModel;
-
-import java.util.ArrayList;
+import com.example.cashier.state_manager.StateManager;
 
 public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder> {
 
-    private ArrayList<ProductModel> productDataset;
-    private ArrayList<Integer> quantityDataset;
     private TextView totalPriceRef;
 
-    public RViewAdapter(ArrayList<ProductModel> nproductDataset, TextView totalPriceRef) {
-        productDataset = nproductDataset;
-        quantityDataset = new ArrayList<>();
+    public RViewAdapter(TextView totalPriceRef) {
         this.totalPriceRef = totalPriceRef;
 
-        for (int i = 0; i < productDataset.size(); i++) {
-            quantityDataset.add(1);
-        }
         updateTotalPrice();
     }
 
     @Override
     public int getItemCount() {
-        return productDataset.size();
+        return StateManager.getProductsInBasket().size();
     }
 
     public void removeItemAt(int position) {
-        productDataset.remove(position);
-        quantityDataset.remove(position);
+        StateManager.getProductsInBasket().remove(position);
         updateTotalPrice();
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, productDataset.size());
+        notifyItemRangeChanged(position, StateManager.getProductsInBasket().size());
+    }
+
+    public void addItem(ProductModel productModel) {
+        StateManager.addProduct(productModel);
+        notifyItemInserted(StateManager.getProductsInBasket().size() - 1);
+        updateTotalPrice();
     }
 
     public void updateTotalPrice() {
         double totalPrice = 0;
-        for (int i = 0; i < productDataset.size(); i++) {
-            double price = productDataset.get(i).getUnitPrice() * quantityDataset.get(i);
+        for (int i = 0; i < StateManager.getProductsInBasket().size(); i++) {
+            double price = StateManager.getProductsInBasket().get(i).getUnitPrice() * StateManager.getProductsInBasket().get(i).getNumberOfProducts();
             totalPrice += price;
         }
         totalPriceRef.setText(String.format("%.2f€", totalPrice));
@@ -81,7 +78,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RViewAdapter.RViewHolder holder, int position) {
-        ProductModel product = productDataset.get(position);
+        ProductModel product = StateManager.getProductsInBasket().get(position);
         holder.textProductName.setText(product.getName());
         holder.textProductCode.setText(product.getCode());
         holder.textProductPrice.setText(String.format("%.2f€", product.getUnitPrice()));
@@ -89,9 +86,9 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity =  quantityDataset.get(position);
+                int quantity =  StateManager.getProductsInBasket().get(position).getNumberOfProducts();
                 holder.textQuantity.setText(Integer.toString(quantity + 1));
-                quantityDataset.set(position, quantity + 1);
+                StateManager.getProductsInBasket().get(position).setNumberOfProducts(quantity + 1);
                 updateTotalPrice();
             }
         });
@@ -99,10 +96,10 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity =  quantityDataset.get(position);
+                int quantity =  StateManager.getProductsInBasket().get(position).getNumberOfProducts();
                 if (quantity > 0) {
                     holder.textQuantity.setText(Integer.toString(quantity - 1));
-                    quantityDataset.set(position, quantity - 1);
+                    StateManager.getProductsInBasket().get(position).setNumberOfProducts(quantity - 1);
                     updateTotalPrice();
                 }
             }

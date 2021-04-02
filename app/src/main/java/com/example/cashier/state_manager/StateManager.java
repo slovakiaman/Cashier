@@ -18,8 +18,13 @@ public class StateManager {
         Get products in basket
      */
     public static ArrayList<ProductModel> getProductsInBasket(){
-        stateRef.productsInBasket = createTestProducts();
+        if (stateRef.productsInBasket.isEmpty())
+            stateRef.productsInBasket = createTestProducts();
         return stateRef.productsInBasket;
+    }
+
+    public static void addProduct(ProductModel productModel) {
+        stateRef.productsInBasket.add(productModel);
     }
 
     private static ArrayList<ProductModel> createTestProducts() {
@@ -68,6 +73,7 @@ public class StateManager {
             this.productsInBasket = new ArrayList<>();
             this.merchant = null;
         }
+
     }
 }
 

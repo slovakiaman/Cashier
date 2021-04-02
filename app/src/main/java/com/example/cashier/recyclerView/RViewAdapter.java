@@ -16,21 +16,41 @@ import java.util.ArrayList;
 
 public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder> {
 
-    private ArrayList<ProductModel> dataset;
+    private ArrayList<ProductModel> productDataset;
+    private ArrayList<Integer> quantityDataset;
+    private TextView totalPriceRef;
 
-    public RViewAdapter(ArrayList<ProductModel> nDataset) {
-        dataset = nDataset;
+    public RViewAdapter(ArrayList<ProductModel> nproductDataset, TextView totalPriceRef) {
+        productDataset = nproductDataset;
+        quantityDataset = new ArrayList<>();
+        this.totalPriceRef = totalPriceRef;
+
+        for (int i = 0; i < productDataset.size(); i++) {
+            quantityDataset.add(1);
+        }
+        updateTotalPrice();
     }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return productDataset.size();
     }
 
     public void removeItemAt(int position) {
-        dataset.remove(position);
+        productDataset.remove(position);
+        quantityDataset.remove(position);
+        updateTotalPrice();
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, dataset.size());
+        notifyItemRangeChanged(position, productDataset.size());
+    }
+
+    public void updateTotalPrice() {
+        double totalPrice = 0;
+        for (int i = 0; i < productDataset.size(); i++) {
+            double price = productDataset.get(i).getUnitPrice() * quantityDataset.get(i);
+            totalPrice += price;
+        }
+        totalPriceRef.setText(String.format("%.2f€", totalPrice));
     }
 
     //---------------------------------------------------------------
@@ -61,7 +81,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RViewAdapter.RViewHolder holder, int position) {
-        ProductModel product = dataset.get(position);
+        ProductModel product = productDataset.get(position);
         holder.textProductName.setText(product.getName());
         holder.textProductCode.setText(product.getCode());
         holder.textProductPrice.setText(String.format("%.2f€", product.getUnitPrice()));
@@ -69,17 +89,22 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity =  Integer.parseInt(holder.textQuantity.getText().toString());
+                int quantity =  quantityDataset.get(position);
                 holder.textQuantity.setText(Integer.toString(quantity + 1));
+                quantityDataset.set(position, quantity + 1);
+                updateTotalPrice();
             }
         });
 
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity =  Integer.parseInt(holder.textQuantity.getText().toString());
-                if (quantity > 0)
+                int quantity =  quantityDataset.get(position);
+                if (quantity > 0) {
                     holder.textQuantity.setText(Integer.toString(quantity - 1));
+                    quantityDataset.set(position, quantity - 1);
+                    updateTotalPrice();
+                }
             }
         });
 

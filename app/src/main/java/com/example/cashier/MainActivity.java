@@ -1,8 +1,5 @@
 package com.example.cashier;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,17 +51,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
+        totalPriceText.setText("0.00€");
+
         recyclerView = (RecyclerView)findViewById(R.id.RView);
         recyclerView.setHasFixedSize(true);
 
         rvManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(rvManager);
 
-        rvAdapter = new RViewAdapter(StateManager.getProductsInBasket());
+        rvAdapter = new RViewAdapter(StateManager.getProductsInBasket(), totalPriceText);
         recyclerView.setAdapter(rvAdapter);
 
-        TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
-        totalPriceText.setText("Total: 24.59€");
+
     }
 
     private void scanCode(){

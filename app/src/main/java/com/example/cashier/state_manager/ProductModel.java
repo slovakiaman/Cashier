@@ -2,7 +2,6 @@ package com.example.cashier.state_manager;
 
 public class ProductModel {
 
-
     private String name;
     private String code;
     private int numberOfProducts;

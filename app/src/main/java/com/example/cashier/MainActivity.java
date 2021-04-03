@@ -14,11 +14,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cashier.helpers.DatabaseHelper;
+import com.example.cashier.helpers.HttpHelper;
+import com.example.cashier.helpers.ICheckApiCallback;
+import com.example.cashier.helpers.IPaymentCallback;
 import com.example.cashier.recyclerView.RViewAdapter;
+import com.example.cashier.state_manager.MerchantModel;
+import com.example.cashier.state_manager.PaymentResultModel;
 import com.example.cashier.state_manager.ProductModel;
 import com.example.cashier.state_manager.StateManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         rvAdapter = new RViewAdapter(totalPriceText);
         recyclerView.setAdapter(rvAdapter);
-
     }
 
     private void addProduct(ProductModel productModel) {

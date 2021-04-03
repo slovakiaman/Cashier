@@ -28,6 +28,7 @@
             android:layout_weight="1"
             android:layout_marginStart="4dp"
             android:text="@string/btn_pay" />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout"

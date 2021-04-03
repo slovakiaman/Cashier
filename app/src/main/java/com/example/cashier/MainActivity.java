@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Button payButton = (Button)findViewById(R.id.btnPay);
         payButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                // TODO intent to Payment methods activity
-                startActivity(new Intent(MainActivity.this, BillActivity.class));//docasny odkaz na test bill - potom presmerovat na pay
+                startActivity(new Intent(MainActivity.this, PaymentMethodsActivity.class));
             }
         });
         TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);

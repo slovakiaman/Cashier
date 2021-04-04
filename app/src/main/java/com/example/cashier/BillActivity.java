@@ -83,8 +83,6 @@ public class BillActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String generateBill(PaymentResultModel paymentResult){
-        // TODO add payment type info to bill
-
         MerchantModel merchantModel = paymentResult.getMerchant();
         String paymentTime = paymentResult.getPaymentTime();
 

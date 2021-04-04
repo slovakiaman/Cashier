@@ -42,6 +42,17 @@ public class StateManager {
         return stateRef.merchant;
     }
 
+    /*
+        Get cumulative basket price
+     */
+    public static double getBasketValue() {
+        double sum = 0;
+        for (ProductModel prod : stateRef.productsInBasket){
+            sum += prod.getNumberOfProducts() * prod.getUnitPrice();
+        }
+        return sum;
+    }
+
     private static class State{
 
         /*

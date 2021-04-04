@@ -47,25 +47,34 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
+        <TextView
+            android:id="@+id/basketPriceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Basket"
+            android:textSize="24sp"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cash payed" />
+            android:text="Cash payed"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/cashPayedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberDecimal"/>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Change" />
+            android:text="Change"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/changeTextView"

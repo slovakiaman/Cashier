@@ -84,6 +84,7 @@ public class BillActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String generateBill(PaymentResultModel paymentResult){
         // TODO add payment type info to bill
+
         MerchantModel merchantModel = paymentResult.getMerchant();
         String paymentTime = paymentResult.getPaymentTime();
 
@@ -91,17 +92,18 @@ public class BillActivity extends AppCompatActivity {
         address += String.format("%40s \n",merchantModel.getStreet() + " " + merchantModel.getStreetNumber());
         address += String.format("%40s \n",merchantModel.getPsc()+" "+merchantModel.getCity());
         address += String.format("%40s \n%40s\n","ICO: "+ merchantModel.getIco(),paymentTime);
+        address += String.format("%40s\n","Payment type : "+ paymentType);
         //String head = String.format("%40s\n\n", "   Invoice Reciept   ");
         String s = String.format("%-15s %-10s %25s\n", "Item","Qty","Price");
         String s1 = String.format("%-15s %-10s %35s\n","---------","---------"," --------------");
         String output = address +  s + s1;
-        double sum = 0.0;
+        float sum = 0.0f;
 
         for(ProductModel product : paymentResult.getBasket())
         {
             String name = product.getName();
             int ammount = product.getNumberOfProducts();
-            double price = product.getUnitPrice();
+            float price = product.getUnitPrice();
             String code = product.getCode();
             sum += (price*ammount);
 

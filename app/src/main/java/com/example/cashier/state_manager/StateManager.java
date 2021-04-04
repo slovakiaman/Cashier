@@ -42,6 +42,10 @@ public class StateManager {
         return stateRef.merchant;
     }
 
+    public static void setMerchant(MerchantModel merchantModel){
+        stateRef.merchant = merchantModel;
+    }
+
     /*
         Get cumulative basket price
      */
@@ -83,6 +87,7 @@ public class StateManager {
             this.productsInBasket = items;
             this.merchant = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");;
         }
+
     }
 }
 

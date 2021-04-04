@@ -12,6 +12,11 @@ import android.widget.TextView;
 
 public class ChangeActivity extends AppCompatActivity {
 
+    /*
+    Message key to bill activity, send payment type message (cash)
+    */
+    public static final String EXTRA_MESSAGE_CHANGE_ACTIVITY = "com.example.cashier.paymentMethodsActivity_MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,9 @@ public class ChangeActivity extends AppCompatActivity {
     }
 
     private void OnPayBtnClick(){
+        Intent intent = new Intent(ChangeActivity.this, BillActivity.class);
+        intent.putExtra(EXTRA_MESSAGE_CHANGE_ACTIVITY, "cash");
+        startActivity(intent);
 
     }
 

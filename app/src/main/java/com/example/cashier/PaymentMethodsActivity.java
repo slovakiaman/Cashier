@@ -9,6 +9,11 @@ import android.widget.Button;
 
 public class PaymentMethodsActivity extends AppCompatActivity {
 
+    /*
+        Message key to bill activity, send payment type message (card)
+     */
+    public static final String EXTRA_MESSAGE_PAYMENT_METHODS_ACTIVITY = "com.example.cashier.paymentMethodsActivity_MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +50,8 @@ public class PaymentMethodsActivity extends AppCompatActivity {
     }
 
     private void OnCardPaymentBtnClick(){
-        startActivity(new Intent(PaymentMethodsActivity.this, BillActivity.class));
+        Intent intent = new Intent(PaymentMethodsActivity.this, BillActivity.class);
+        intent.putExtra(EXTRA_MESSAGE_PAYMENT_METHODS_ACTIVITY, "card");
+        startActivity(intent);
     }
 }

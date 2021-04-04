@@ -18,42 +18,27 @@ public class StateManager {
         Get products in basket
      */
     public static ArrayList<ProductModel> getProductsInBasket(){
-        if (stateRef.productsInBasket.isEmpty())
-            stateRef.productsInBasket = createTestProducts();
         return stateRef.productsInBasket;
     }
 
+    /*
+        Adds product to basket
+     */
     public static void addProduct(ProductModel productModel) {
         stateRef.productsInBasket.add(productModel);
     }
 
-    private static ArrayList<ProductModel> createTestProducts() {
-        ArrayList<ProductModel> items = new ArrayList<>();
-        items.add(new ProductModel("Kofola 0.5l", "KSGF001", 1, 0.69f));
-        items.add(new ProductModel("Kukurica 100g", "KHGF005", 1, 1.80f));
-        items.add(new ProductModel("Kofola 0.5l", "KSGF001", 1, 0.69f));
-        items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
-        items.add(new ProductModel( "Yogobela Jahody", "YHGN045", 1, 0.50f));
-        items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
-        items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
-        items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
-        items.add(new ProductModel( "Yogobela Jahody", "YHGN045", 1, 0.50f));
-        items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
-        items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
-        items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
-        return items;
-    }
-
-    private static MerchantModel createTestMerchant(){
-        MerchantModel merchantModel = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");
-        return merchantModel;
+    /*
+        Clears basket
+     */
+    public static void ClearBasket(){
+        stateRef.productsInBasket.clear();
     }
 
     /*
         Get merchant
      */
     public static MerchantModel getMerchant(){
-        stateRef.merchant = createTestMerchant();
         return stateRef.merchant;
     }
 
@@ -70,10 +55,23 @@ public class StateManager {
         private MerchantModel merchant;
 
         public State(){
-            this.productsInBasket = new ArrayList<>();
-            this.merchant = null;
+            // TODO remove test data
+            ArrayList<ProductModel> items = new ArrayList<>();
+            items.add(new ProductModel("Kofola 0.5l", "KSGF001", 1, 0.69f));
+            items.add(new ProductModel("Kukurica 100g", "KHGF005", 1, 1.80f));
+            items.add(new ProductModel("Kofola 0.5l", "KSGF001", 1, 0.69f));
+            items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
+            items.add(new ProductModel( "Yogobela Jahody", "YHGN045", 1, 0.50f));
+            items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
+            items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
+            items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
+            items.add(new ProductModel( "Yogobela Jahody", "YHGN045", 1, 0.50f));
+            items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
+            items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
+            items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
+            this.productsInBasket = items;
+            this.merchant = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");;
         }
-
     }
 }
 

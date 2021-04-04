@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                      addProduct(product);
                  }
 
-
                  builder.setMessage(content + " \n" +info);
                  builder.setTitle("Scanning result");
                  builder.setPositiveButton("Scan again", new DialogInterface.OnClickListener() {

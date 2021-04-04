@@ -62,13 +62,13 @@ public class BillActivity extends AppCompatActivity {
         String s = String.format("%-15s %-10s %25s\n", "Item","Qty","Price");
         String s1 = String.format("%-15s %-10s %35s\n","---------","---------"," --------------");
         String output = address +  s + s1;
-        double sum = 0.0;
+        float sum = 0.0f;
 
         for(ProductModel product : products)
         {
             String name = product.getName();
             int ammount = product.getNumberOfProducts();
-            double price = product.getUnitPrice();
+            float price = product.getUnitPrice();
             String code = product.getCode();
             sum += (price*ammount);
 

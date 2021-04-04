@@ -42,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+        StateManager.setMerchant(databaseHelper.getMerchantDb());
+        if(StateManager.getMerchant() == null){
+            startActivity(new Intent(this,SettingsActivity.class));
+        }
+
         Button scanButton = (Button)findViewById(R.id.btnScan);
         scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -80,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt("Scanning Code");
         integrator.initiateScan();
+    }
+
+    public void clickSettings(View v){
+        startActivity(new Intent(this,SettingsActivity.class));
     }
 
      @Override

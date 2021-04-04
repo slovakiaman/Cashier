@@ -5,4 +5,13 @@
     <string name="btn_color">#007FFF</string>
     <string name="home">Home</string>
     <string name="payment_bill">Payment bill</string>
+    <string name="merchant_name">Merchant Name</string>
+    <string name="ico">ICO</string>
+    <string name="street_name">Street Name</string>
+    <string name="street_number">Street Number</string>
+    <string name="city_name">City Name</string>
+    <string name="name">Name</string>
+    <string name="psc">PSC</string>
+    <string name="save">Save</string>
+    <string name="settings">Settings</string>
 </resources>

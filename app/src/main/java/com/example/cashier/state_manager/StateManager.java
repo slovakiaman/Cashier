@@ -44,16 +44,14 @@ public class StateManager {
         return items;
     }
 
-    private static MerchantModel createTestMerchant(){
-        MerchantModel merchantModel = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");
-        return merchantModel;
+    public static void setMerchant(MerchantModel merchantModel){
+       stateRef.merchant = merchantModel;
     }
 
     /*
         Get merchant
      */
     public static MerchantModel getMerchant(){
-        stateRef.merchant = createTestMerchant();
         return stateRef.merchant;
     }
 

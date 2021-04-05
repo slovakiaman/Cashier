@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
         Button payButton = (Button)findViewById(R.id.btnPay);
         payButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, PaymentMethodsActivity.class));
+                if (StateManager.getProductsInBasket().size() > 0){
+                    startActivity(new Intent(MainActivity.this, PaymentMethodsActivity.class));
+                }
             }
         });
         TextView totalPriceText = (TextView) findViewById(R.id.textTotalPrice);
@@ -71,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         rvAdapter = new RViewAdapter(totalPriceText);
         recyclerView.setAdapter(rvAdapter);
+    }
+
+    @Override
+    public void onBackPressed () {
+        // Disables back button
     }
 
     private void addProduct(ProductModel productModel) {

@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.cashier.state_manager.StateManager;
 
 public class PaymentMethodsActivity extends AppCompatActivity {
 
@@ -18,13 +21,6 @@ public class PaymentMethodsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_methods);
-
-        Button backBtn = findViewById(R.id.paymentMethodsBackBtn);
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                OnBackBtnClick();
-            }
-        });
 
         Button cashBtn = findViewById(R.id.cashPaymentBtn);
         cashBtn.setOnClickListener(new View.OnClickListener(){
@@ -41,7 +37,7 @@ public class PaymentMethodsActivity extends AppCompatActivity {
         });
     }
 
-    private void OnBackBtnClick(){
+    public void clickBack(View v){
         startActivity(new Intent(PaymentMethodsActivity.this, MainActivity.class));
     }
 

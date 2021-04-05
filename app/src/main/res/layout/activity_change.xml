@@ -6,75 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".PaymentMethodsActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/changeMethodsBackBtn"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Back" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Change"
-            android:textAlignment="center"
-            android:textColor="#040000"
-            android:textSize="30sp" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:onClick="clickBack"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/abc_vector_test"
+        app:title="Cash Change" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="562dp"
+        android:layout_width="387dp"
+        android:layout_height="590dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="50dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="81dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/basketPriceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Basket"
-            android:textSize="24sp"
-            android:layout_marginTop="20dp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cash payed"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="Cash payed" />
 
         <EditText
             android:id="@+id/cashPayedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Change"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="Change" />
 
         <TextView
             android:id="@+id/changeTextView"
@@ -96,10 +77,10 @@
 
         <Button
             android:id="@+id/payButton"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
             android:text="Pay" />
     </LinearLayout>
 

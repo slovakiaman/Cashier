@@ -10,6 +10,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cashier.helpers.HttpHelper;
 import com.example.cashier.helpers.IPaymentCallback;
@@ -66,17 +67,14 @@ public class BillActivity extends AppCompatActivity {
                 status.setText("Payment failed"); // need to add response from API
             }
         });
-
-        Button btnHome = (Button)findViewById(R.id.btnHome);
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onHomeButtonClick();
-            }
-        });
     }
 
-    public void onHomeButtonClick()
-    {
+    @Override
+    public void onBackPressed () {
+        // Disables back button
+    }
+
+    public void clickHome(View v){
         StateManager.ClearBasket();
         startActivity(new Intent(BillActivity.this, MainActivity.class));
     }

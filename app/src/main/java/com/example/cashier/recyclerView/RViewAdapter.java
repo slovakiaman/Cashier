@@ -13,9 +13,11 @@ import com.example.cashier.R;
 import com.example.cashier.state_manager.ProductModel;
 import com.example.cashier.state_manager.StateManager;
 
+import java.util.ArrayList;
+
 public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder> {
 
-    private TextView totalPriceRef;
+    private final TextView totalPriceRef;
 
     public RViewAdapter(TextView totalPriceRef) {
         this.totalPriceRef = totalPriceRef;
@@ -36,8 +38,21 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
     }
 
     public void addItem(ProductModel productModel) {
-        StateManager.addProduct(productModel);
-        notifyItemInserted(StateManager.getProductsInBasket().size() - 1);
+        boolean isProductInBasket = false;
+        ArrayList<ProductModel> productsInBasket = StateManager.getProductsInBasket();
+        for (int i = 0; i < productsInBasket.size(); i++) {
+            ProductModel product = productsInBasket.get(i);
+            if (product.getCode().equals(productModel.getCode())) {
+                product.setNumberOfProducts(product.getNumberOfProducts() + 1);
+                isProductInBasket = true;
+                notifyItemChanged(i);
+                break;
+            }
+        }
+        if (!isProductInBasket) {
+            StateManager.addProduct(productModel);
+            notifyItemInserted(StateManager.getProductsInBasket().size() - 1);
+        }
         updateTotalPrice();
     }
 
@@ -81,6 +96,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
         ProductModel product = StateManager.getProductsInBasket().get(position);
         holder.textProductName.setText(product.getName());
         holder.textProductCode.setText(product.getCode());
+        holder.textQuantity.setText(Integer.toString(product.getNumberOfProducts()));
         holder.textProductPrice.setText(String.format("%.2f€", product.getUnitPrice()));
 
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {

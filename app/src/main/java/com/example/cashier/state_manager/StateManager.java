@@ -70,7 +70,10 @@ public class StateManager {
         private MerchantModel merchant;
 
         public State(){
+            this.productsInBasket = new ArrayList<>();
+            this.merchant  = null;
             // TODO remove test data
+            /*
             ArrayList<ProductModel> items = new ArrayList<>();
             items.add(new ProductModel("Kofola 0.5l", "KSGF001", 1, 0.69f));
             items.add(new ProductModel("Kukurica 100g", "KHGF005", 1, 1.80f));
@@ -85,7 +88,9 @@ public class StateManager {
             items.add(new ProductModel( "Kukurica 100g", "KHGF005", 1, 1.80f));
             items.add(new ProductModel( "Horčica", "HBGN144", 1, 3.15f));
             this.productsInBasket = items;
-            this.merchant = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");;
+            this.merchant = new MerchantModel("Potraviny Koruna","123456789","Hurbanova","12","Zilina","123 45");
+            */
+
         }
 
     }

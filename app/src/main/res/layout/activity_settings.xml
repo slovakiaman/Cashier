@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SettingsActivity">
 
@@ -22,6 +22,7 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:text="@string/merchant_name"
         android:textSize="18sp"
@@ -112,10 +113,10 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="@string/psc"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/idSetPSC"
@@ -129,9 +130,11 @@
 
     <Button
         android:id="@+id/btnSaveSettings"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:onClick="buttonSave"
         android:text="@string/save"
         android:textAlignment="center" />

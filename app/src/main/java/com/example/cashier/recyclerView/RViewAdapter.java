@@ -97,7 +97,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolder>
             @Override
             public void onClick(View v) {
                 int quantity =  StateManager.getProductsInBasket().get(position).getNumberOfProducts();
-                if (quantity > 0) {
+                if (quantity > 1) {
                     holder.textQuantity.setText(Integer.toString(quantity - 1));
                     StateManager.getProductsInBasket().get(position).setNumberOfProducts(quantity - 1);
                     updateTotalPrice();

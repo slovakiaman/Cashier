@@ -37,13 +37,6 @@ public class ChangeActivity extends AppCompatActivity {
         double basketPriceNum = Math.round(StateManager.getBasketValue() * 100.0) / 100.0;
         basketPriceText.setText("Basket: " + basketPriceNum + " €");
 
-        Button backBtn = findViewById(R.id.changeMethodsBackBtn);
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                OnBackBtnClick();
-            }
-        });
-
         Button payBtn = findViewById(R.id.payButton);
         payBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -63,7 +56,7 @@ public class ChangeActivity extends AppCompatActivity {
         });
     }
 
-    private void OnBackBtnClick(){
+    public void clickBack(View v){
         startActivity(new Intent(ChangeActivity.this, PaymentMethodsActivity.class));
     }
 

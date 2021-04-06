@@ -5,13 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.cashier.state_manager.MerchantModel;
 import com.example.cashier.state_manager.ProductModel;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private final Context myContext;
     public static final String PRODUCT_TABLE = "PRODUCT_TABLE";
     public static final String ID = "ID";
     public static final String NAME = "NAME";
@@ -27,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "products.db", null, 2);
+        this.myContext = context;
     }
 
     @Override
@@ -142,11 +149,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return product;
     }
-    private void fillData(SQLiteDatabase db) {
-        addOne(new ProductModel("Chlieb","11112222",1,1.2f),db);
-        addOne(new ProductModel("Vianocka","11112223",1,1.49f),db);
-        addOne(new ProductModel("Mlieko","11112224",1,0.59f),db);
-        addOne(new ProductModel("Maslo","11112225",1,1.2f),db);
+    private void fillData(SQLiteDatabase db)  {
+        String str1 = "INSERT INTO " + PRODUCT_TABLE + " ("+PRODUCT_NAME+", "+PRODUCT_CODE+", "+UNIT_PRICE+") values(";
+        String str2 = ");";
+        String values = "";
 
+        db.beginTransaction();
+        try {
+            InputStream i = myContext.getAssets().open("products.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(i));
+            String nextLine;
+            while ((nextLine = reader.readLine()) != null) {
+                String[] row = nextLine.split(";");
+                values = "'"+row[0]+"'," + "'"+ row[1] +"',"+ row[2];
+                db.execSQL(str1+values+str2);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(myContext, "Products file was not found!", Toast.LENGTH_SHORT).show();
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 }

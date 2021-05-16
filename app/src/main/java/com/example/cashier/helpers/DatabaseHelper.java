@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PSC = "PSC";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "products.db", null, 2);
+        super(context, "products.db", null, 3);
         this.myContext = context;
     }
 
@@ -164,6 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values = "'"+row[0]+"'," + "'"+ row[1] +"',"+ row[2];
                 db.execSQL(str1+values+str2);
             }
+            Toast.makeText(myContext, "Products loaded!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(myContext, "Products file was not found!", Toast.LENGTH_SHORT).show();

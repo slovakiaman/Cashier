@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/horizontalLayout"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:layout_margin="8dp"
     android:orientation="horizontal">
 
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:minWidth="0dp"
         android:minHeight="0dp"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:text="-"
         />
@@ -26,7 +26,7 @@
         android:gravity="center"
         android:text="1"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <Button
@@ -36,7 +36,7 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="+"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TableLayout
@@ -58,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:text="Kofola 0.5l" />
+                android:textSize="14sp"
+                android:text="DZUS BRAVO MULT.50%0,33L PL" />
 
         </TableRow>
 
@@ -79,9 +79,9 @@
                 android:id="@+id/rvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="textEnd"
-                android:text="0.79€" />
+                android:layout_weight="0"
+                android:text="0.79€"
+                android:textAlignment="textEnd" />
 
         </TableRow>
 
@@ -94,6 +94,6 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="X"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 </LinearLayout>

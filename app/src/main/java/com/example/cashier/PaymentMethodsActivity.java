@@ -1,14 +1,11 @@
 package com.example.cashier;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.cashier.state_manager.StateManager;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PaymentMethodsActivity extends AppCompatActivity {
 
@@ -46,8 +43,7 @@ public class PaymentMethodsActivity extends AppCompatActivity {
     }
 
     private void OnCardPaymentBtnClick(){
-        Intent intent = new Intent(PaymentMethodsActivity.this, BillActivity.class);
-        intent.putExtra(EXTRA_MESSAGE_PAYMENT_METHODS_ACTIVITY, "card");
+        Intent intent = new Intent(PaymentMethodsActivity.this, PaymentProgressActivity.class);
         startActivity(intent);
     }
 }
